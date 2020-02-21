@@ -17,8 +17,8 @@ Create_CSV_File <- function(sFile)
   offset <- ncatt_get(nc,dname,"add_offset")
 
   fillvalue <- as.numeric(fillvalue)  # -32767
-  scale <- as.numeric(scale)
-  offset <- as.numeric(offset)
+  scale <- as.numeric(scale)    # 0.001763198
+  offset <- as.numeric(offset)  # 257.7037
   
   # get the dimensions of the data array  
   
@@ -80,10 +80,12 @@ Create_CSV_File <- function(sFile)
 
       # x <- colCounts(myMatrix, value = -32767)
     
-      # adjust values using scale factor and offset
-    
-      myDF <- myDF * scale
-      myDF <- myDF + offset
+      # adjust values using scale factor and offset;
+      # however, I don't think we need to make this adjustment
+      # because I think R implements the adjustment automatically
+      
+      # myDF <- myDF * scale
+      # myDF <- myDF + offset
       
       # convert from Kelvin to Celsius
     
@@ -101,6 +103,11 @@ Create_CSV_File <- function(sFile)
       {
         myDF <- myDF[ abs( myDF$lon - round(myDF$lon ) ) < 0.00000001,  ]
         myDF <- myDF[ abs( myDF$lat - round(myDF$lat ) ) < 0.00000001,  ]
+        #myDF$xlon <- myDF$lon - floor(myDF$lon)
+        #myDF$xlat <- myDF$lat - floor(myDF$lat)
+        #myDF <- subset(myDF, xlon == .25 | xlon == 0.75)
+        #myDF <- subset(myDF, xlat == .25 | xlat == 0.75)
+        #myDF <- myDF[c("lon", "lat", sLabel)]
       }
       
       # drop lat/lon points that are outside of user-specified rectangle

@@ -30,24 +30,24 @@ CSV_Output_File <<- "out_era5.csv"  # this output file is produced by this progr
 # how to deal with GRIB files using R.
 
 Year_First <<- 1979 # the first year you wish to extract (no earlier than 1979)
-Year_Last  <<- 2019 # the last year you wish to extract (no later than 2019)
+Year_Last  <<- 1980 # the last year you wish to extract (no later than 2019)
 
 Month_First <<- 1   # 1 = jan, 2 = feb, etc
 Month_Last  <<- 12 
 
 Extract_Rectangular_Area <<- TRUE  # false = entire planet, true = a particular area
 
-UseOneDegreeSpacing <<- TRUE  #    set to TRUE if you want to drop all non-integer latitude
-                              #    and longitude grid points. This reduces the data to 
-                              #    1/16th its original size.
+UseOneDegreeSpacing <<- TRUE   #    set to TRUE if you want to drop all non-integer latitude
+                               #    and longitude grid points. This reduces the data to 
+                               #    1/16th its original size.
 
 # use the min and max boundaries below to specify a rectangular area
 
-Area_Lat_Min <<- 25  # degrees north
-Area_Lat_Max <<- 50  # degrees north
+Area_Lat_Min <<- 35  # degrees north
+Area_Lat_Max <<- 45  # degrees north
 
-Area_Lon_Min <<- 180  # degrees east
-Area_Lon_Max <<- 300  # degrees east
+Area_Lon_Min <<- 250  # degrees east
+Area_Lon_Max <<- 270  # degrees east
 
 cat("\014")
 
